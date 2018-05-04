@@ -1183,3 +1183,79 @@ if(FALSE)
                       data.frame(species=colnames(comm),taxonomy="Aves")))
 }
 
+
+#From Hannah
+.mikola.2018 <- function(...){
+  data <- as.data.frame(read_xlsx(suppdata("10.5061/dryad.8382j4r/1", "Mikola et al. 2018_Biogeosciences.xlsx"), sheet=3)) 
+  comm <- data[,-2]
+  return(.matrix.melt(comm, 
+                      data.frame(units="#"),
+                      data.frame(id=rownames(comm),year="2014",
+                                 name=data$Study.plot,
+                                 lat="71.59425",
+                                 long="128.88783",
+                                 address="Tiksi Hydrometeorological Observatory, northeast Russia",
+                                 area="45 cm^2"), 
+                      data.frame(species=colnames(comm),taxonomy="na")))
+}
+
+
+.cook.2017 <- function(...){
+  data <- as.data.frame(read.csv(suppdata("10.5061/dryad.3r44n", "SRJS_invert_wide.csv"))) 
+  comm <- data[,-2]
+  return(.matrix.melt(comm, 
+                      data.frame(units="#"),
+                      data.frame(id=rownames(comm),year="2014-2016",
+                                 name=data$Site_ID,
+                                 lat="na",
+                                 long="na",
+                                 address=c("Ozark Highlands", "Boston Mountains"),
+                                 area="na"), 
+                      data.frame(species=colnames(comm),taxonomy="na")))
+}
+
+
+
+.werner.2014 <- function(...){
+  data <- as.data.frame(read_xlsx(suppdata("10.5061/dryad.js47k", "Werner_etal_ESGR_PLOS_data_Files.xlsx"))) 
+  comm <- data[,-2]
+  return(.matrix.melt(comm, 
+                      data.frame(units="#"),
+                      data.frame(id=rownames(comm),year="2014-2016",
+                                 name=data$Site_ID,
+                                 lat="na",
+                                 long="na",
+                                 address=c("Ozark Highlands", "Boston Mountains"),
+                                 area="na"), 
+                      data.frame(species=colnames(comm),taxonomy="na")))
+}
+
+.loos.2014 <- function(...){
+  data <- as.data.frame(read_xls(suppdata("10.5061/dryad.97s1k", "Loos et al 2014 Butterflies.xls"))) 
+  comm <- data[,-138:-153]
+  return(.matrix.melt(comm, 
+                      data.frame(units="#"),
+                      data.frame(id=rownames(comm),year="2012",
+                                 name=data$site,
+                                 lat="na",
+                                 long="na",
+                                 address="Southern Transylvania, Romania",
+                                 area="na"), 
+                      data.frame(species=colnames(comm),taxonomy="na")))
+}
+
+
+.muylaert.2016 <- function(...){
+  data <- as.data.frame(read_xlsx(suppdata("10.5061/dryad.648jt", "Muylaert et al 2016 Dryad.xlsx"), sheet=4)) #use skip to skip any rows that you don't want/aren't useful
+  comm <- data[,-17] 
+  comm <- t(comm) 
+  #metadata was ignored
+  return(.matrix.melt(comm, 
+                      data.frame(units=""),
+                      data.frame(id=rownames(comm),year="",
+                                 name="",
+                                 lat="",
+                                 long="",
+                                 address="",area=""), 
+                      data.frame(species=colnames(comm),taxonomy="")))
+}
